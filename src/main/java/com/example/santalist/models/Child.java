@@ -20,10 +20,10 @@ public class Child {
     @JsonManagedReference
     private Country country;
 
-//    @ManyToMany(cascade = CascadeType.PERSIST)
-//    @JoinTable(name="wishes", joinColumns = {@JoinColumn(referencedColumnName = "id")}
-//            ,inverseJoinColumns = {@JoinColumn(referencedColumnName = "id")})
-//    private List<Present> wishes;
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name="wishes", joinColumns = {@JoinColumn(referencedColumnName = "id")}
+            ,inverseJoinColumns = {@JoinColumn(referencedColumnName = "id")})
+    private List<Present> wishes;
 
     public Child() { }
 
@@ -36,11 +36,11 @@ public class Child {
         this.country = country;
     }
 
-//    public Child(String name, Country country, List<Present> wishes) {
-//        this.name = name;
-//        this.country = country;
-//        this.wishes = wishes;
-//    }
+    public Child(String name, Country country, List<Present> wishes) {
+        this.name = name;
+        this.country = country;
+        this.wishes = wishes;
+    }
 
     public Long getId() {
         return id;
@@ -60,12 +60,12 @@ public class Child {
     public void setCountry(Country country) {
         this.country = country;
     }
-//    public List<Present> getWishes() {
-//        return wishes;
-//    }
-//    public void setWishes(List<Present> presents) {
-//        this.wishes = presents;
-//    }
+    public List<Present> getWishes() {
+        return wishes;
+    }
+    public void setWishes(List<Present> presents) {
+        this.wishes = presents;
+    }
     @Override
     public String toString() {
         return "Child{" +

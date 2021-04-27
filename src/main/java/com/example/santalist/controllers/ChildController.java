@@ -45,30 +45,30 @@ public class ChildController {
         return "Saved a child with name: " +childP;
     }
 
-//    @GetMapping(path = "/addWithPresent")
-//    public String addChildAndPresent(@RequestParam String childP, @RequestParam String countryP, @RequestParam String wishP){
-//
-//        Country existingCountry = countryRepo.findByName(countryP);
-//        Present existingPresent = presentRepo.findByName(wishP);
-//        if(existingPresent == null){
-//            Present p = new Present(wishP);
-//            presentRepo.save(p);
-//            existingPresent = presentRepo.findByName(p.getName());
-//        }
-//        List<Present> presentList = Arrays.asList(existingPresent);
-//
-//        Child c = childRepo.findByName(childP);
-//        if(c != null){
-//            c.getWishes().addAll(presentList);
-//            childRepo.save(c);
-//            return "Added a wish for child: " + childP + " that wishes for: " + wishP;
-//        }
-//        else{
-//            Child child = new Child(childP, existingCountry, presentList);
-//            childRepo.save(child);
-//            return "Updated child: " + childP + " with wish for: " + wishP;
-//        }
-//    }
+    @GetMapping(path = "/addWithPresent")
+    public String addChildAndPresent(@RequestParam String childP, @RequestParam String countryP, @RequestParam String wishP){
+
+        Country existingCountry = countryRepo.findByName(countryP);
+        Present existingPresent = presentRepo.findByName(wishP);
+        if(existingPresent == null){
+            Present p = new Present(wishP);
+            presentRepo.save(p);
+            existingPresent = presentRepo.findByName(p.getName());
+        }
+        List<Present> presentList = Arrays.asList(existingPresent);
+
+        Child c = childRepo.findByName(childP);
+        if(c != null){
+            c.getWishes().addAll(presentList);
+            childRepo.save(c);
+            return "Added a wish for child: " + childP + " that wishes for: " + wishP;
+        }
+        else{
+            Child child = new Child(childP, existingCountry, presentList);
+            childRepo.save(child);
+            return "Updated child: " + childP + " with wish for: " + wishP;
+        }
+    }
 
     @GetMapping(path = "/add")
     public String addChild(@RequestParam String name){
